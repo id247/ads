@@ -1,0 +1,15 @@
+
+	</div> <!-- end .body-container -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+
+	<!-- main script -->
+	@@if (server === "dnevnik"){
+	<script src="http://localhost:9000/assets/js/dnevnik.js"></script>
+	}	
+	@@if (server === "local"){
+	<script src="http://localhost:9000/assets/js/local.js"></script>
+	}
+
+</body>
+</html>
