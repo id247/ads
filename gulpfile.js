@@ -110,7 +110,7 @@ gulp.task('html', function(callback){
 				indent: true
 			}))
 			.on('error', $.notify.onError())
-			//.pipe($.if(devMode === 'prod', $.htmlmin({collapseWhitespace: true})))
+			.pipe($.if(devMode !== 'dev', $.htmlmin({collapseWhitespace: true})))
 			.pipe(gulp.dest(newDestFolder));
 	}
 	
@@ -143,7 +143,7 @@ gulp.task('frames', function(callback){
 			indent: true
 		}))
 		.on('error', $.notify.onError())
-		//.pipe($.if(devMode === 'prod', $.htmlmin({collapseWhitespace: true})))
+		.pipe($.if(devMode !== 'dev', $.htmlmin({collapseWhitespace: true})))
 		.pipe(gulp.dest(newDestFolder));
 
 });
@@ -201,15 +201,20 @@ gulp.task('vers', function(){
 	function setVestion(node, attrName){
 
 		const attr = node.attrs && node.attrs[attrName] ? node.attrs[attrName] : false;
-		if (!attr || attr.indexOf('http://localhost:9000/assets') !== 0){
+		
+		if (attr.indexOf('../../assets') === 0){
+			attr = attr.replace('../../assets/','assets/');
+		}
+
+		if (!attr || attr.indexOf('assets') !== 0){
 			return node;
 		}
-		const version =  getVersion(attr.replace('http://localhost:9000/', ''));
+		const version =  getVersion(attr.replace('', ''));
 
 		if (!version){
-			node.attrs[attrName] = attr.replace('http://localhost:9000/assets/', CDN);
+			node.attrs[attrName] = attr.replace('assets/', CDN);
 		}else{
-			node.attrs[attrName] = attr.replace('http://localhost:9000/assets/', CDN) + '?_v=' + version;
+			node.attrs[attrName] = attr.replace('assets/', CDN) + '?_v=' + version;
 		}
 	
 		return node;
@@ -256,7 +261,7 @@ gulp.task('watch', function(){
 	gulp.watch('src/sass/**/*.scss', gulp.series('sass'));
 	gulp.watch('src/assets/**/*', gulp.series('assets'));
 	gulp.watch(['src/js/**/*.js', 'my_modules/**/*.js'], gulp.series('webpack'));
-	gulp.watch('src/html/**/*.html', gulp.series('html'));
+	gulp.watch('src/html/**/*.html', gulp.series('html', 'frames'));
 });
 
 gulp.task('clean', function(callback) {
