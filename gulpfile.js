@@ -200,9 +200,9 @@ gulp.task('vers', function(){
 
 	function setVestion(node, attrName){
 
-		const attr = node.attrs && node.attrs[attrName] ? node.attrs[attrName] : false;
+		let attr = node.attrs && node.attrs[attrName] ? node.attrs[attrName] : false;
 		
-		if (attr.indexOf('../../assets') === 0){
+		if (attr && attr.indexOf('../../assets') === 0){
 			attr = attr.replace('../../assets/','assets/');
 		}
 
