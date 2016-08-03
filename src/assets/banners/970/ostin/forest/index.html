@@ -7,7 +7,7 @@
 			box-sizing: border-box;
 		}
 		body{		
-			width: 1920px;
+			/*width: 1920px;*/
 			overflow: hidden;
 		}
 		.banner{
@@ -127,7 +127,8 @@
 			top: 0;
 			left: 0;
 			right: 0;
-			width: 1920px;
+			min-width: 970px;
+			/*width: 1920px;*/
 			display: none;
 		}
 
@@ -349,6 +350,17 @@
 			margin-left: 900px;
 		}
 
+		._forest-wave{
+			background: url('http://localhost:9000/assets/banners/970/ostin/forest/files/mahal.png') 0 0 no-repeat;
+			width: 177px;
+   			height: 279px;
+   			position: absolute;
+   			top: 30px;
+   			right: -24px;
+
+   			transform: rotate(-75deg);
+		}
+
 	</style>
 <body marginheight="0">
 
@@ -373,9 +385,10 @@
             <img class="forest__item forest__item--b17" src="files/boy/b13.png">
             <img class="forest__item forest__item--b18" src="files/boy/b14.png">
             <img class="forest__item forest__item--b19" src="files/boy/b11.png">
-            <img class="forest__item forest__item--b20" src="files/boy/b12.png">
-            <img class="forest__item forest__item--b21" src="files/boy/b13.png">
             <img class="forest__item forest__item--b22" src="files/boy/b14.png">
+
+			<!-- to right -->
+
             <img class="forest__item forest__item--b23" src="files/boy/b16.png">
             <img class="forest__item forest__item--b24" src="files/boy/b17.png">
             <img class="forest__item forest__item--b25" src="files/boy/b18.png">
@@ -387,10 +400,6 @@
             <img class="forest__item forest__item--b31" src="files/boy/b19.png">
             <img class="forest__item forest__item--b32" src="files/boy/b20.png">
             <img class="forest__item forest__item--b33" src="files/boy/b16.png">
-            <img class="forest__item forest__item--b34" src="files/boy/b17.png">
-            <img class="forest__item forest__item--b35" src="files/boy/b18.png">
-            <img class="forest__item forest__item--b36" src="files/boy/b19.png">
-            <img class="forest__item forest__item--b37" src="files/boy/b20.png">
             
             <img class="forest__table" src="files/table.png">
         </div>
@@ -425,6 +434,8 @@
 	<script src="files/EasePack.min.js"></script>
 	<script src="files/CSSPlugin.min.js"></script>
 	<script src="files/TweenLite.min.js"></script>
+	<script src="files/TweenLite.min.js"></script>
+	<script src="files/TimelineLite.min.js"></script>
 	<script>
 
 		;(function(){
@@ -441,43 +452,18 @@
 			var bannerFinal = document.querySelector('.banner__final');
 
 
-			function setDefaultStyles(){
-				TweenLite.set(bannerBoy, {
-					top: '230px',
-					scale: 1,
-				});
+			var timeLine = new TimelineLite({paused:true});
 
-				TweenLite.set(bannerStart, {
-					opacity: 1,
-				});				
+			var parentFrameNode;
+			var parentDoc;
+			var paddingDiv;
+			var wave;
 
-				TweenLite.set(bannerFinal, {
-					opacity: 0,
-				});
+			var waveAnimationEnabled = false;
 
-				TweenLite.set(repeat, {
-					opacity: 0,
-					visibility: 'hidden',
-				});
-				TweenLite.set(bannerText1, {
-					top: '-120px',
-					opacity: 1,
-					scale: 1,
-				});
-				TweenLite.set(bannerText2, {
-					opacity: 0,
-					scale: 0,
-				});
+			var height = '900px';
 
-				TweenLite.set(fullscreen, {
-					opacity: 1,
-					display: 'none',
-				});
 
-				TweenLite.set(bannerBoy, {
-					display: 'block'
-				});
-			}
 
 			function run(callback){
 			
@@ -490,8 +476,13 @@
 							table.classList.add('forest__table--visible');
 						}
 
+						if (i === 20){
+							fullSize();
+						}
+
 						if (i === boyRun.length){
 							callback();
+							defaultSize();
 						}
 						
 						setTimeout(function(){
@@ -499,160 +490,214 @@
 						}, 100);
 					}
 				}				
-				hideBannerBoy();	
-				showFullscreen();	
 				run(0);
 			}
 
-			function hideBannerBoy(){
-				TweenLite.set(bannerBoy, {
-					display: 'none'
-				});
-			}
-
-			function showFullscreen(){
-				TweenLite.set(fullscreen, {
-					display: 'block'
-				});
-			}
-
-			function hideFullscreen(){
-				TweenLite.to(fullscreen, .3, {
-					opacity: '0',
-					//ease: Power2.easeOut,
-					onComplete: function(){
-						TweenLite.set(fullscreen, {
-							display: 'none'
-						});
+			function waveAnimation(wave, callback){
+				
+				function animate(i){
+					if (!waveAnimationEnabled){
+						return;
 					}
-				});
-			}
+					
+					if (i === 8){
+						i = 0;
+					}
+					var position = -177 * i;
+					setStyle(wave, {
+						backgroundPosition: position + 'px 0',
+					});	
+					setTimeout(function(){
+						animate(++i);	
+					}, 200);
+					
+				}
+				animate(0);
+			};
 
-			function bannerBoySlideUp(callback){
-				TweenLite.to(bannerBoy, 1.0, {
+			function createTimeline(){
+
+				timeLine.set(bannerStart, {
+					opacity: 1,
+				})
+				.fromTo(bannerText1, 1.0,{
+					top: '-130px',
+					scale: 1,
+				},{	
+					top: '45px',
+					//ease: Power2.easeOut,
+				})
+				.to(bannerBoy, 1.0, {
 					top: '0px',
 					//ease: Power2.easeOut,
-					onComplete: callback
-				});
-			}
-
-			function bannerBoyScale(callback){
-				TweenLite.to(bannerBoy, 1.5, {
-					delay: .7,
+				}, 0)
+				.to(bannerBoy, 1.0, {
 					scale: .3,
 					top: '50px',
 					//ease: Power2.easeOut,
-					onComplete: callback
-				});
-			}
-
-			function text1In(callback){
-				TweenLite.to(bannerText1, 1.5, {
-					top: '45px',
-					//ease: Power2.easeOut,
-					onComplete: callback
-				});
-			}
-			function text1Out(callback){
-				TweenLite.to(bannerText1, 1.0, {
+				}, '+=.5')
+				.to(bannerText1, 1.0, {
 					opacity: 0,
-					transform: 'scale(0)',
+					scale: 0,
 					//ease: Bounce.easeOut,
-					onComplete: callback
-				});
-			}
-
-			function text2In(callback){
-				TweenLite.to(bannerText2, 1.2, {
+				})
+				.fromTo(bannerText2, 1.2, {
+					opacity: 0,
+					scale: 0,
+				},{
 					opacity: 1,
 					scale: 1,
 					//ease: Power2.easeOut,
-					onComplete: callback
-				});
-			}
-
-			function text2Out(callback){
-				TweenLite.fromTo(bannerText2, 1.0, {
+				}, '-=.4')
+				.set(bannerBoy, {
+					display: 'none',	
+				})
+				.set(fullscreen, {
+					display: 'block',	
+				})
+				.append(TweenLite.delayedCall(0, function(){
+					timeLine.pause();
+					run(function(){
+						timeLine.resume();
+					});
+				}))
+				.to(repeat, .3, {
 					opacity: 1,
-					transform: 'scale(1)',
+					visibility: 'visible',
+					//ease: Bounce.easeOut,
+				})
+				.set(bannerBoy, {
+					display: 'none'
+				})
+				.to(fullscreen, .3, {
+					opacity: 0,
+				})
+				.to(bannerText2, .6, {
+					opacity: 0,
+					scale: 0,
+					ease: Back.easeInOut,
+				}, 'final')
+				.to(bannerStart, .5, {
+					opacity: 0,
+					//ease: Bounce.easeOut,
+				}, 'final')
+				.fromTo(bannerFinal, .6, {
+					opacity: 0,
+					//ease: Bounce.easeOut,
 				},{
-					opacity: 0,
-					transform: 'scale(0)',
-					//ease: Bounce.easeOut,
-					onComplete: callback
-				});
-			}
-
-			function repeatIn(callback){
-				TweenLite.to(repeat, .3, {
 					opacity: 1,
-					visibility: 'visible',
+					onComplete: function(){
+						waveAnimationEnabled = true;
+						waveAnimation(wave);
+					}
 					//ease: Bounce.easeOut,
-					onComplete: callback
-				});
+				}, '-=.3')
+				.fromTo(wave, .5,{
+					right: '-250px'
+				},{
+					right: '-24px'
+				})
+				.to(wave, .5,{
+					right: '-250px',
+					onComplete: function(){
+						waveAnimationEnabled = false;
+					}
+				}, '+=1.5');
 			}
 
-			function startIn(callback){
-				TweenLite.to(bannerStart, .0, {
-					opacity: 1,
-					visibility: 'visible',
-					//ease: Bounce.easeOut,
-					onComplete: callback
+			function fullSize(){
+				setStyle(parentFrameNode, {
+					height: height
 				});
+				setStyle(frameElement, {
+					height: height
+				});		
 			}
 
-			function startOut(callback){
-				TweenLite.to(bannerStart, .3, {
-					opacity: 0,
-					//ease: Bounce.easeOut,
-					onComplete: callback
+			function defaultSize(){
+				setStyle(parentFrameNode, {
+					height: ''
 				});
+				setStyle(frameElement, {
+					height: ''
+				});			
 			}
 
-			function finalIn(callback){
-				TweenLite.to(bannerFinal, .3, {
-					opacity: 1,
-					//ease: Bounce.easeOut,
-					onComplete: callback
-				});
+			function setStyle(el, styles){
+				if (!el || !el.style){
+					return;
+				}
+				for (var key in styles){
+					el.style[key] = styles[key];
+				}
 			}
 
-			function finalOut(callback){
-				TweenLite.to(bannerFinal, .5, {
-					opacity: 0,
-					//ease: Bounce.easeOut,
-					onComplete: callback
+			function createWave(){
+				var parentDoc = window.parent ? window.parent.document : document;
+				wave = parentDoc.createElement('div');
+
+				setStyle(wave, {
+					background: 'url(http://localhost:9000/assets/banners/970/ostin/forest/files/mahal.png) 0 0 no-repeat',
+					width: '177px',
+		   			height: '279px',
+		   			position: 'fixed',
+		   			top: '30px',
+		   			right: '-24px',
+					'-webkit-transform': 'rotate(-75deg)',
+					'-ms-transform': 'rotate(-75deg)',
+					'-o-transform': 'rotate(-75deg)',
+					transform: 'rotate(-75deg)',
 				});
+
+				
+
+				parentDoc.body.appendChild(wave);
+			}
+
+			function iframePosition(){
+
+				//of in iframe
+				if (!window.parent || !frameElement){
+					return;
+				}
+
+				parentDoc = window.parent.document;
+				parentFrameNode = frameElement.parentNode;
+
+				paddingDiv = parentDoc.createElement('div');
+				paddingDiv.style.height = '200px';
+
+				setStyle(parentFrameNode, {
+					position: 'absolute',
+					top: 0,
+					left: 0,
+					right: 0,
+					width: '100%',
+					zIndex: 10000000000
+				});
+
+				setStyle(frameElement, {
+					width: '100%'
+				});
+
+				parentFrameNode.parentNode.insertBefore(paddingDiv, parentFrameNode.parentNode.firstChild);
 			}
 
 			function init(){
+				console.log('start');
+				iframePosition();
 
-				function start(){
-					console.log('start');
+				createWave();
 
-					setDefaultStyles();
+				createTimeline();
 
-					text1In();
-					bannerBoySlideUp(function(){
-						bannerBoyScale(function(){
-							text1Out();
-							text2In(function(){
-								run(function(){
-									repeatIn();
-									hideFullscreen();
-									startOut();	
-									finalIn();	
-								})
-							});
-						});
-					});
 
-				}
-				start();
+				//timeLine.seek('final');
+				timeLine.play();
 
 				repeat.addEventListener('click', function(e){
 					e.preventDefault();
-				 	start();
+					timeLine.restart();
 				});
 			}
 
