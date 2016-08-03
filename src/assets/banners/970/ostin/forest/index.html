@@ -1,0 +1,668 @@
+<html lang="en-US"><head>
+	<meta charset="UTF-8">
+	<style type="text/css">
+		* {
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+		}
+		body{		
+			width: 1920px;
+			overflow: hidden;
+		}
+		.banner{
+			width: 970px;
+			height: 200px;
+			margin: auto;
+			border: 1px solid;
+			overflow: hidden;
+			position: relative;
+		}
+		.banner__boy{
+			position: absolute;
+			top: 230px;
+			right: -130px;
+			transform-origin: 0 0;
+		}
+
+		.banner__href{
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+
+		.banner__repeat{
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			opacity: 0;
+		}
+
+		.banner__text{
+			position: absolute;
+		}
+
+		.banner__text--1{
+			top: -120px;
+			left: 100px;
+		}
+
+		.banner__text--2{
+			top: 30px;
+			left: 50px;
+			opacity: 0;
+		}
+
+		.banner__start{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			opacity: 0;
+		}
+
+		.banner__final{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			opacity: 0;
+		}
+
+		.repeat{
+			background: transparent url('files/repeat.png');
+			text-indent: -9999px;
+			width: 98px;
+			height: 20px;
+			display: block;
+			border: 0;
+			cursor: pointer;
+			outline: none;
+		}
+		.repeat:after{
+			content: '';
+			position: absolute;
+			top: 2px;
+			right: 2px;
+			width: 16px;
+			height: 16px;
+			background: url('files/arrow.png') 50% 0 no-repeat;
+		}
+		.repeat:hover:after{
+			-webkit-transition: all .5s;
+			-o-transition: all .5s;
+			transition: all .5s;
+			transform: rotate(-359deg);
+		}
+
+		.final{
+
+		}
+
+		.final__logo{
+			position: absolute;
+			top: 20px;
+			left: 0;
+			right: 0;
+			display: block;
+			margin: auto;
+		}
+
+		.final__text{
+			position: absolute;
+			top: 70px;
+			left: 0;
+			right: 0;
+			display: block;
+			margin: auto;
+		}
+
+		.fullscreen{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			width: 1920px;
+			display: none;
+		}
+
+		.fullscreen--visible{
+			display: block;
+		}
+		
+		.fullscreen__forest{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 50;
+		}
+
+		.forest{
+			
+		}
+
+		.forest__table{
+			position: absolute;
+			left: 50%;
+			top: 40px;
+			margin-left: 148px;
+			transform: scale(.51);
+			display: none;
+		}
+
+		.forest__table--visible{
+			display: block;
+		}
+
+		.forest__item{
+			position: absolute;
+			top: 0px;
+			left: 50%;
+			margin-left: -2800px;
+			transform-origin: 50% 0%;
+			/*opacity: .3;*/
+			display: none;
+		}
+
+		.forest__item--visible{
+			display: block;
+		}
+
+		.forest__item--b1{
+			top: 51px;
+			margin-left: 147px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b2{
+			top: 37px;
+			margin-left: 147px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b3{
+			top: 25px;
+			margin-left: 147px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b4{
+			top: 21px;
+			margin-left: 147px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b5{
+			top: 22px;
+			margin-left: 123px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b6{
+			top: 19px;
+			margin-left: 81px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b7{
+			top: 14px;
+			margin-left: 50px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b8{
+			top: 5px;
+			margin-left: 66px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b9{
+			top: 31px;
+			margin-left: 5px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b10{
+			top: 40px;
+			margin-left: -45px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b11{
+			top: 40px;
+			margin-left: -105px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b12{
+			top: 40px;
+			margin-left: -175px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b13{
+			top: 40px;
+			margin-left: -305px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b14{
+			top: 40px;
+			margin-left: -405px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b15{
+			top: 40px;
+			margin-left: -505px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b16{
+			top: 40px;
+			margin-left: -655px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b17{
+			top: 40px;
+			margin-left: -855px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b18{
+			top: 40px;
+			margin-left: -955px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b19{
+			top: 40px;
+			margin-left: -1055px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b19{
+			top: 40px;
+			margin-left: -1055px;
+			transform: scale(.51);
+		}
+
+		.forest__item--b23{
+			top: 250px;
+			margin-left: -1055px;
+		}
+
+		.forest__item--b24{
+			top: 250px;
+			margin-left: -855px;
+		}
+
+		.forest__item--b25{
+			top: 250px;
+			margin-left: -655px;
+		}
+
+		.forest__item--b26{
+			top: 250px;
+			margin-left: -500px;
+		}
+
+		.forest__item--b27{
+			top: 250px;
+			margin-left: -300px;
+		}
+
+		.forest__item--b28{
+			top: 250px;
+			margin-left: -100px;
+		}
+
+		.forest__item--b29{
+			top: 250px;
+			margin-left: 100px;
+		}
+
+		.forest__item--b30{
+			top: 250px;
+			margin-left: 350px;
+		}
+
+		.forest__item--b31{
+			top: 250px;
+			margin-left: 500px;
+		}
+
+		.forest__item--b32{
+			top: 250px;
+			margin-left: 700px;
+		}
+
+		.forest__item--b33{
+			top: 250px;
+			margin-left: 900px;
+		}
+
+	</style>
+<body marginheight="0">
+
+	<div id="fullscreen" class="fullscreen">
+        <div class="fullscreen__forest forest" id="forest">
+            <img class="forest__item forest__item--b1" src="files/boy/b1.png">
+            <img class="forest__item forest__item--b2" src="files/boy/b2.png">
+            <img class="forest__item forest__item--b3" src="files/boy/b3.png">
+            <img class="forest__item forest__item--b4" src="files/boy/b4.png">
+            <img class="forest__item forest__item--b5" src="files/boy/b5.png">
+            <img class="forest__item forest__item--b6" src="files/boy/b6.png">
+            <img class="forest__item forest__item--b7" src="files/boy/b7.png">
+            <img class="forest__item forest__item--b8" src="files/boy/b8.png">
+            <img class="forest__item forest__item--b9" src="files/boy/b9.png">
+            <img class="forest__item forest__item--b10" src="files/boy/b10.png">
+            <img class="forest__item forest__item--b11" src="files/boy/b11.png">
+            <img class="forest__item forest__item--b12" src="files/boy/b12.png">
+            <img class="forest__item forest__item--b13" src="files/boy/b13.png">
+            <img class="forest__item forest__item--b14" src="files/boy/b14.png">
+            <img class="forest__item forest__item--b15" src="files/boy/b15.png">
+            <img class="forest__item forest__item--b16" src="files/boy/b12.png">
+            <img class="forest__item forest__item--b17" src="files/boy/b13.png">
+            <img class="forest__item forest__item--b18" src="files/boy/b14.png">
+            <img class="forest__item forest__item--b19" src="files/boy/b11.png">
+            <img class="forest__item forest__item--b20" src="files/boy/b12.png">
+            <img class="forest__item forest__item--b21" src="files/boy/b13.png">
+            <img class="forest__item forest__item--b22" src="files/boy/b14.png">
+            <img class="forest__item forest__item--b23" src="files/boy/b16.png">
+            <img class="forest__item forest__item--b24" src="files/boy/b17.png">
+            <img class="forest__item forest__item--b25" src="files/boy/b18.png">
+            <img class="forest__item forest__item--b26" src="files/boy/b19.png">
+            <img class="forest__item forest__item--b27" src="files/boy/b20.png">
+            <img class="forest__item forest__item--b28" src="files/boy/b16.png">
+            <img class="forest__item forest__item--b29" src="files/boy/b17.png">
+            <img class="forest__item forest__item--b30" src="files/boy/b18.png">
+            <img class="forest__item forest__item--b31" src="files/boy/b19.png">
+            <img class="forest__item forest__item--b32" src="files/boy/b20.png">
+            <img class="forest__item forest__item--b33" src="files/boy/b16.png">
+            <img class="forest__item forest__item--b34" src="files/boy/b17.png">
+            <img class="forest__item forest__item--b35" src="files/boy/b18.png">
+            <img class="forest__item forest__item--b36" src="files/boy/b19.png">
+            <img class="forest__item forest__item--b37" src="files/boy/b20.png">
+            
+            <img class="forest__table" src="files/table.png">
+        </div>
+    </div>
+
+	<div class="banner" id="banner">
+
+		<div class="banner__start">
+
+			<img src="files/boy/b0.png" alt="boy" class="banner__boy" id="banner-boy">
+			
+			<img src="files/1.gif" alt="1" class="banner__text banner__text--1" id="banner-text-1">
+			<img src="files/2.gif" alt="2" class="banner__text banner__text--2" id="banner-text-2">
+
+		</div><!-- /.banner__start -->
+	
+		<div class="banner__final final">
+
+			<img src="files/logo.png" alt="logo" class="final__logo">
+
+			<img src="files/3.gif" alt="3" class="final__text">
+			
+		</div><!-- /.banner__final -->
+
+		<a href="http://ya.ru" class="banner__href" target="_blank"></a>
+
+		<button class="banner__repeat repeat" id="repeat">Повторить</button>
+
+	</div><!-- /.banner -->
+
+
+	<script src="files/EasePack.min.js"></script>
+	<script src="files/CSSPlugin.min.js"></script>
+	<script src="files/TweenLite.min.js"></script>
+	<script>
+
+		;(function(){
+
+			var bannerBoy = document.querySelector('#banner-boy');
+			var boyRun = document.querySelectorAll('.forest__item');
+			var table = document.querySelector('.forest__table');
+			var fullscreen = document.querySelector('.fullscreen');
+			var repeat = document.querySelector('.repeat');
+			var bannerText1 = document.querySelector('#banner-text-1');
+			var bannerText2 = document.querySelector('#banner-text-2');
+			var repeat = document.querySelector('#repeat');
+			var bannerStart = document.querySelector('.banner__start');
+			var bannerFinal = document.querySelector('.banner__final');
+
+
+			function setDefaultStyles(){
+				TweenLite.set(bannerBoy, {
+					top: '230px',
+					scale: 1,
+				});
+
+				TweenLite.set(bannerStart, {
+					opacity: 1,
+				});				
+
+				TweenLite.set(bannerFinal, {
+					opacity: 0,
+				});
+
+				TweenLite.set(repeat, {
+					opacity: 0,
+					visibility: 'hidden',
+				});
+				TweenLite.set(bannerText1, {
+					top: '-120px',
+					opacity: 1,
+					scale: 1,
+				});
+				TweenLite.set(bannerText2, {
+					opacity: 0,
+					scale: 0,
+				});
+
+				TweenLite.set(fullscreen, {
+					opacity: 1,
+					display: 'none',
+				});
+
+				TweenLite.set(bannerBoy, {
+					display: 'block'
+				});
+			}
+
+			function run(callback){
+			
+				var run = function(i){
+					if (i <= boyRun.length){
+						boyRun[i-1] && boyRun[i-1].classList.remove('forest__item--visible');
+						boyRun[i] && boyRun[i].classList.add('forest__item--visible');
+
+						if (i === 5){
+							table.classList.add('forest__table--visible');
+						}
+
+						if (i === boyRun.length){
+							callback();
+						}
+						
+						setTimeout(function(){
+							run(++i);
+						}, 100);
+					}
+				}				
+				hideBannerBoy();	
+				showFullscreen();	
+				run(0);
+			}
+
+			function hideBannerBoy(){
+				TweenLite.set(bannerBoy, {
+					display: 'none'
+				});
+			}
+
+			function showFullscreen(){
+				TweenLite.set(fullscreen, {
+					display: 'block'
+				});
+			}
+
+			function hideFullscreen(){
+				TweenLite.to(fullscreen, .3, {
+					opacity: '0',
+					//ease: Power2.easeOut,
+					onComplete: function(){
+						TweenLite.set(fullscreen, {
+							display: 'none'
+						});
+					}
+				});
+			}
+
+			function bannerBoySlideUp(callback){
+				TweenLite.to(bannerBoy, 1.0, {
+					top: '0px',
+					//ease: Power2.easeOut,
+					onComplete: callback
+				});
+			}
+
+			function bannerBoyScale(callback){
+				TweenLite.to(bannerBoy, 1.5, {
+					delay: .7,
+					scale: .3,
+					top: '50px',
+					//ease: Power2.easeOut,
+					onComplete: callback
+				});
+			}
+
+			function text1In(callback){
+				TweenLite.to(bannerText1, 1.5, {
+					top: '45px',
+					//ease: Power2.easeOut,
+					onComplete: callback
+				});
+			}
+			function text1Out(callback){
+				TweenLite.to(bannerText1, 1.0, {
+					opacity: 0,
+					transform: 'scale(0)',
+					//ease: Bounce.easeOut,
+					onComplete: callback
+				});
+			}
+
+			function text2In(callback){
+				TweenLite.to(bannerText2, 1.2, {
+					opacity: 1,
+					scale: 1,
+					//ease: Power2.easeOut,
+					onComplete: callback
+				});
+			}
+
+			function text2Out(callback){
+				TweenLite.fromTo(bannerText2, 1.0, {
+					opacity: 1,
+					transform: 'scale(1)',
+				},{
+					opacity: 0,
+					transform: 'scale(0)',
+					//ease: Bounce.easeOut,
+					onComplete: callback
+				});
+			}
+
+			function repeatIn(callback){
+				TweenLite.to(repeat, .3, {
+					opacity: 1,
+					visibility: 'visible',
+					//ease: Bounce.easeOut,
+					onComplete: callback
+				});
+			}
+
+			function startIn(callback){
+				TweenLite.to(bannerStart, .0, {
+					opacity: 1,
+					visibility: 'visible',
+					//ease: Bounce.easeOut,
+					onComplete: callback
+				});
+			}
+
+			function startOut(callback){
+				TweenLite.to(bannerStart, .3, {
+					opacity: 0,
+					//ease: Bounce.easeOut,
+					onComplete: callback
+				});
+			}
+
+			function finalIn(callback){
+				TweenLite.to(bannerFinal, .3, {
+					opacity: 1,
+					//ease: Bounce.easeOut,
+					onComplete: callback
+				});
+			}
+
+			function finalOut(callback){
+				TweenLite.to(bannerFinal, .5, {
+					opacity: 0,
+					//ease: Bounce.easeOut,
+					onComplete: callback
+				});
+			}
+
+			function init(){
+
+				function start(){
+					console.log('start');
+
+					setDefaultStyles();
+
+					text1In();
+					bannerBoySlideUp(function(){
+						bannerBoyScale(function(){
+							text1Out();
+							text2In(function(){
+								run(function(){
+									repeatIn();
+									hideFullscreen();
+									startOut();	
+									finalIn();	
+								})
+							});
+						});
+					});
+
+				}
+				start();
+
+				repeat.addEventListener('click', function(e){
+					e.preventDefault();
+				 	start();
+				});
+			}
+
+			window.onload = function(){
+				init();
+			}
+
+		})();
+
+	</script>
+
+</body>
+</html>
