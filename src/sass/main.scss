@@ -199,3 +199,39 @@
 		display: block;
 	}
 }
+
+/* ==========================================================================
+ * bubble
+ * ========================================================================== */
+
+.bubble{
+	position: absolute;
+	padding: 10px;
+	background: rgba(255,255,255,.85);
+	display: none;
+	z-index: 5000000;
+	line-height: 1.3;
+	font-size: 18px;
+	cursor: close;
+
+	&:after{
+		content: 'x';
+		font-size: 14px;
+		position: absolute;
+		top: -5px;
+		right: -10px;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		line-height: 16px;
+		text-align: center;
+		color: #fff;
+		background: rgba(0,0,0,.7);
+		border: 1px solid rgba(255,255,255,.85);
+		cursor: pointer;
+	}
+
+	&--visible{
+		display: block;
+	}
+}

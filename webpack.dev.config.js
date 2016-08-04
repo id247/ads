@@ -6,7 +6,8 @@ var path = require('path');
 module.exports = {
 	cache: true,
 	entry: {
-		local: './src/js/local',
+		index: './src/js/index',
+		frame: './src/js/frame',
 	},
 	devtool: '#inline-source-map',
 	output: {

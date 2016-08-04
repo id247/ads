@@ -6,7 +6,7 @@
 			style="padding-top: 222px;"
 		>
 			
-			<div class="page__branding branding">
+			<div class="page__branding branding" data-bubble="branding">
 					
 				<iframe src="../../assets/branding/yandex/index.html" frameborder="0" width="2500" height="1200"></iframe>
 				
@@ -17,6 +17,7 @@
 				<img src="../../assets/screens/main.jpg" alt="bg" class="content__bg">
 
 				<div class="page__place page__place--sidebar"
+					data-bubble="sidebar"
 					style="top: top: 303px;"
 				>
 					
@@ -24,11 +25,21 @@
 
 				</div><!-- /.page__banner -->
 
-			</div><!-- /.page -->
+				<div class="page__place page__place--footer"
+					data-bubble="footer"
+					style="bottom: 162px;"
+				>
+					
+					<iframe src="../../assets/banners/728/lego/index.html" frameborder="0" width="728" height="90"></iframe>
+
+				</div><!-- /.page__banner -->
+
+			</div><!-- /.page__content -->
 
 		</div><!-- /.page -->
 
 
 
-@@include("../common/foot-no-js.html", {})
+
+@@include("../common/foot-frame.html", {})
 

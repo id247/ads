@@ -1,6 +1,6 @@
 'use strict';
 
-export default (function App(window, document, $){
+;(function App(window, document, $){
 	console.log('run');
 
 	var $iframe = $('.demo__iframe');
@@ -45,8 +45,6 @@ export default (function App(window, document, $){
 		nav();
 	}
 
-	return {
-		init 
-	}
+	init();
 
 })(window, document, jQuery, undefined);

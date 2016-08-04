@@ -6,8 +6,8 @@ var path = require('path');
 module.exports = {
 	cache: true,
 	entry: {
-		dnevnik: './src/js/dnevnik',
-	//	mosreg: './src/js/mosreg'
+		index: './src/js/index',
+		frame: './src/js/frame',
 	},
 	output: {
 		path: __dirname + '/production/assets/js',

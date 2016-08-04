@@ -4,7 +4,7 @@
 
 		<div class="page">
 
-			<div class="page__place page__place--970">
+			<div class="page__place page__place--970" data-bubble="branding">
 				
 				<iframe src="../../assets/banners/970/ostin/index.html" frameborder="0" width="970" height="200"></iframe>
 
@@ -15,17 +15,26 @@
 				<img src="../../assets/screens/main.jpg" alt="bg" class="content__bg">
 
 				<div class="page__place page__place--sidebar"
+					data-bubble="sidebar"
 				>
 					
 					<iframe src="../../assets/banners/240/lego/index.html" frameborder="0" width="240" height="400"></iframe>
 
 				</div><!-- /.page__banner -->
 
-			</div><!-- /.page -->
+				<div class="page__place page__place--footer"
+					data-bubble="footer"
+					style="bottom: 162px;"
+				>
+					
+					<iframe src="../../assets/banners/728/lego/index.html" frameborder="0" width="728" height="90"></iframe>
+
+				</div><!-- /.page__banner -->
+
+			</div><!-- /.page__content -->
 
 		</div><!-- /.page -->
 	
 
 
-
-@@include("../common/foot-no-js.html", {})
+@@include("../common/foot-frame.html", {})
