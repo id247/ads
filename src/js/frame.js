@@ -12,11 +12,14 @@
 		return bubble;
 	}
 
+
+
 	function bubbles(){
 		const  places = document.querySelectorAll('[data-bubble]');
 		const bubble = createBubble();
 		
 		let showBubbleAgain = true;
+		let bubbleTimeout;
 
 		var data = {
 			'970': 'Баннер 970x200 <br /> CTR: 0,5%',
@@ -27,6 +30,7 @@
 
 		[...places].forEach((place)=> {
 			place.addEventListener('mouseover', function(){
+				
 				const elemRect = this.getBoundingClientRect();
 				const dataId = this.getAttribute('data-bubble');
 				const info = data[dataId];
@@ -45,6 +49,11 @@
 				}
 				
 				bubble.classList.add('bubble--visible');
+				clearTimeout(bubbleTimeout);
+				bubbleTimeout = setTimeout(() => {
+					showBubbleAgain = true;
+					bubble.classList.remove('bubble--visible');
+				}, 3000);
 			});
 
 			place.addEventListener('mouseleave', function(){
@@ -54,7 +63,6 @@
 
 		bubble.addEventListener('click', function(){
 			showBubbleAgain = false;
-			bubble.innerHTML = '';
 			bubble.classList.remove('bubble--visible');
 		});
 	}
