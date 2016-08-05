@@ -40,7 +40,7 @@
 				showBubbleAgain = false;
 				bubble.innerHTML = info;
 				bubble.style.top = (elemRect.top + document.body.scrollTop + 10) + 'px';
-				if (dataId === 'branding'){
+				if (dataId === 'branding' || dataId === '970'){
 					bubble.style.left = '50%';
 					bubble.style.marginLeft = '-480px';
 				}else{
